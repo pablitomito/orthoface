@@ -1,0 +1,105 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  ::selection {
+    background-color: #0072ce;
+    color: #ffffff;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Watermark helper (existing)
+───────────────────────────────────────────────────────────── */
+.watermark-text {
+  user-select: none;
+  pointer-events: none;
+  letter-spacing: -0.05em;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Accordion — CSS Grid height trick
+   Supports variable-height content without JS measurement.
+
+   Usage:
+     <div class="accordion-body [open]">
+       <div class="accordion-body-inner">…content…</div>
+     </div>
+───────────────────────────────────────────────────────────── */
+.accordion-body {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 280ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.accordion-body.open {
+  grid-template-rows: 1fr;
+}
+
+.accordion-body-inner {
+  overflow: hidden;
+  min-height: 0; /* required — grid items have implicit min-height */
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Nav underline — animated pseudo-element
+   Add class "nav-underline" to desktop nav anchor elements.
+───────────────────────────────────────────────────────────── */
+.nav-underline {
+  position: relative;
+}
+
+.nav-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: #0072ce;
+  border-radius: 1px;
+  transition: width 220ms ease;
+}
+
+.nav-underline:hover::after {
+  width: 100%;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Mobile menu slide-down entrance
+───────────────────────────────────────────────────────────── */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-down {
+  animation: slideDown 250ms cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   prefers-reduced-motion — global reset
+   Collapses all durations to near-zero so content is still
+   reachable but no motion occurs.
+───────────────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
