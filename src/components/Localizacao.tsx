@@ -103,10 +103,11 @@ export const Localizacao: React.FC = () => {
           <div className="lg:col-span-7 min-h-[420px] sm:min-h-[480px] bg-brand-deep/5 relative">
             <iframe
               title="Mapa de Localização Orthoface em Teresina"
-              src="https://maps.google.com/maps?q=Av.+Poti+Velho,+Teresina+-+PI&t=&z=14&ie=UTF8&iwloc=&output=embed"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3974.610489710136!2d-42.840009325206154!3d-5.004177994972231!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x78e3f9c767bc5f1%3A0xcd59d503f335261c!2sCl%C3%ADnica%20Orthoface%20-%20Odontologia%20Especializada!5e0!3m2!1spt-PT!2sbr!4v1789503979687!5m2!1spt-PT!2sbr"
               className="w-full h-full min-h-[420px] border-0"
+              allowFullScreen
               loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
+              referrerPolicy="strict-origin-when-cross-origin"
             />
           </div>
 
