@@ -3,7 +3,7 @@ import { AnimatedSection } from './AnimatedSection';
 
 export const Profissional: React.FC = () => {
   return (
-    <section className="py-24 lg:py-32 xl:py-36 bg-brand-canvas">
+    <section id="profissional" className="py-24 lg:py-32 xl:py-36 bg-brand-canvas">
       <div className="max-w-7xl mx-auto px-5 sm:px-8">
 
         {/* ── Composição Editorial de Corpo Clínico ─────────── */}

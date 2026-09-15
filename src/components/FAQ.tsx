@@ -61,7 +61,7 @@ export const FAQ: React.FC = () => {
   };
 
   return (
-    <section className="py-24 lg:py-32 xl:py-36 bg-brand-canvas">
+    <section id="faq" className="py-24 lg:py-32 xl:py-36 bg-brand-canvas">
       <div className="max-w-5xl mx-auto px-5 sm:px-8">
 
         {/* ── Header Editorial ───────────────────────────────── */}
