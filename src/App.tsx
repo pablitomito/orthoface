@@ -1,4 +1,5 @@
 import React from 'react';
+import { SplashScreen } from './components/SplashScreen';
 import { Header } from './components/Header';
 import { Hero } from './components/Hero';
 import { Tratamentos } from './components/Tratamentos';
@@ -15,6 +16,7 @@ import { WhatsAppFloating } from './components/WhatsAppFloating';
 export const App: React.FC = () => {
   return (
     <div className="min-h-screen bg-white text-brand-deep font-sans antialiased flex flex-col">
+      <SplashScreen />
       <Header />
       <main className="flex-1">
         <Hero />
