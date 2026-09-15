@@ -418,7 +418,7 @@ export const Hero: React.FC = () => {
                 "
               >
                 Agendar avaliação pelo WhatsApp
-                <span aria-hidden="true">↗</span>
+
               </a>
 
               <a
