@@ -154,12 +154,12 @@ export const Resultados: React.FC = () => {
           </div>
         </AnimatedSection>
 
-        {/* ── 2. DEMAIS RESULTADOS — Grade estritamente de 2 colunas (Desktop & Mobile) ── */}
+        {/* ── 2. DEMAIS RESULTADOS — 2 colunas no Mobile e 3 colunas no Desktop ── */}
         <StaggerContainer
           variant="fadeUp"
           staggerMs={70}
           threshold={0.05}
-          className="grid grid-cols-2 gap-x-3.5 sm:gap-x-8 lg:gap-x-12 gap-y-10 sm:gap-y-14 lg:gap-y-16"
+          className="grid grid-cols-2 lg:grid-cols-3 gap-x-3.5 sm:gap-x-6 lg:gap-x-8 gap-y-8 sm:gap-y-12 lg:gap-y-14"
         >
           {cases.map((c) => (
             <div
