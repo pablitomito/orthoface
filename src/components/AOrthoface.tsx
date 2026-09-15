@@ -9,7 +9,7 @@ export const AOrthoface: React.FC = () => {
   const sectionRef = useRef<HTMLElement>(null);
   const rafRef = useRef<number>(0);
 
-  // ── Parallax on clinic photo — desktop only ───────────────────
+  // Parallax suave na foto da clínica no desktop
   useEffect(() => {
     if (reduced) return;
 
@@ -25,18 +25,15 @@ export const AOrthoface: React.FC = () => {
         const rect = section.getBoundingClientRect();
         const vh = window.innerHeight;
 
-        // Progress 0→1 as section travels through viewport
         const raw = (vh - rect.top) / (vh + rect.height);
         const progress = Math.max(0, Math.min(1, raw));
 
-        // Translate ±14px around center (scale(1.06) gives room)
-        const translateY = (progress - 0.5) * 28;
-        img.style.transform = `scale(1.06) translateY(${translateY}px)`;
+        const translateY = (progress - 0.5) * 24;
+        img.style.transform = `scale(1.05) translateY(${translateY}px)`;
       });
     };
 
     window.addEventListener('scroll', onScroll, { passive: true });
-    // Trigger once immediately
     onScroll();
 
     return () => {
@@ -50,77 +47,95 @@ export const AOrthoface: React.FC = () => {
     <section
       ref={sectionRef}
       id="a-orthoface"
-      className="py-20 lg:py-28 bg-brand-ice border-b border-brand-border/60"
+      className="py-24 lg:py-32 xl:py-36 bg-brand-canvas"
     >
       <div className="max-w-7xl mx-auto px-5 sm:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
 
-          {/* ── Photo — fadeRight (comes from left visually) ───── */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
+
+          {/* ── Fotografia Institucional em Grande Escala ──────── */}
           <AnimatedSection variant="fadeRight" className="lg:col-span-6">
-            <div className="relative rounded-3xl overflow-hidden shadow-xl border border-white">
+            <div className="relative rounded-2xl overflow-hidden border border-brand-deep/[0.08] bg-white">
               <img
                 ref={imgRef}
                 src="/images/clinica-orthoface-interior.jpg"
-                alt="Dr. Fernando no consultório equipado da Clínica Orthoface em Teresina"
-                className="w-full h-[480px] object-cover"
+                alt="Consultório equipado da Clínica Orthoface em Teresina"
+                className="w-full h-[460px] sm:h-[520px] object-cover transition-transform duration-700 ease-out"
                 loading="lazy"
-                style={reduced ? {} : { transform: 'scale(1.06)' }}
+                style={reduced ? {} : { transform: 'scale(1.05)' }}
               />
-              {/* Overlay enters slightly after the photo */}
-              <AnimatedSection
-                variant="fadeUp"
-                delay={300}
-                className="absolute bottom-4 left-4 right-4 bg-white/95 backdrop-blur-md p-4 rounded-2xl border border-brand-border/70 text-xs text-brand-deep"
-              >
-                <p className="font-bold text-sm text-brand">Estrutura planejada para Teresina</p>
-                <p className="text-brand-muted mt-0.5">
-                  Biossegurança, equipamentos para raio-X e diagnóstico integrado.
+
+              {/* Legenda técnica integrada na foto */}
+              <div className="absolute bottom-4 left-4 right-4 bg-white/90 backdrop-blur-md p-4 rounded-xl border border-brand-deep/[0.08]">
+                <p className="font-bold text-xs uppercase tracking-wider text-brand">
+                  Estrutura Planejada em Teresina
                 </p>
-              </AnimatedSection>
+                <p className="text-xs text-brand-muted mt-0.5">
+                  Biossegurança rigorosa, radiografia diagnóstica e conforto clínico.
+                </p>
+              </div>
             </div>
           </AnimatedSection>
 
-          {/* ── Text — fadeLeft (comes from right visually) ──────── */}
+          {/* ── Narrativa Institucional Editorial ──────────────── */}
           <AnimatedSection variant="fadeLeft" delay={100} className="lg:col-span-6">
-            <span className="text-xs font-bold uppercase tracking-wider text-brand block mb-3">
-              Sobre a Clínica - ALTERAR IMAGEM
-            </span>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-brand-deep tracking-tight mb-6">
+            <div className="flex items-center gap-3 mb-4">
+              <span className="h-[1.5px] w-6 bg-brand" />
+              <span className="text-xs font-bold uppercase tracking-[0.2em] text-brand">
+                Capítulo 03 · A Instituição
+              </span>
+            </div>
+
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-brand-deep tracking-[-0.03em] leading-[1.08] mb-6">
               Uma clínica preparada para acompanhar todo o seu tratamento.
             </h2>
-            <p className="text-base sm:text-lg text-brand-muted leading-relaxed mb-6">
+
+            <p className="text-base sm:text-lg text-brand-muted leading-relaxed mb-10">
               A Orthoface reúne diferentes áreas da odontologia para que avaliação, planejamento e
-              acompanhamento aconteçam de maneira integrada. Do atendimento preventivo aos casos de
-              reabilitação oral, cada paciente recebe uma orientação construída para sua necessidade.
+              acompanhamento aconteçam de maneira integrada. Do atendimento preventivo aos casos mais
+              complexos de reabilitação oral, cada paciente recebe orientação personalizada e transparente.
             </p>
 
-            {/* ── Mini-cards — staggered ────────────────────────── */}
+            {/* Pilares Institucionais em Linhas Arquitetônicas */}
             <StaggerContainer
               variant="fadeUp"
-              staggerMs={120}
-              className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4 border-t border-brand-border/80"
+              staggerMs={100}
+              className="space-y-6 pt-6 border-t border-brand-deep/[0.08]"
             >
-              <div className="group p-4 rounded-2xl bg-white border border-brand-border/70 transition-all duration-200 hover:border-brand/30 hover:shadow-sm">
-                <h4 className="font-bold text-brand-deep text-base mb-1 transition-colors duration-150 group-hover:text-brand">
-                  Sem promessas irreais
-                </h4>
-                <p className="text-xs text-brand-muted leading-relaxed">
-                  Explicamos com clareza o que a odontologia moderna pode alcançar em cada caso
-                  particular.
-                </p>
+              <div className="flex items-start gap-4">
+                <span className="font-mono text-xs font-bold text-brand uppercase tracking-wider mt-1">
+                  01.
+                </span>
+                <div>
+                  <h4 className="font-bold text-brand-deep text-lg mb-1 tracking-tight">
+                    Sem promessas irreais
+                  </h4>
+                  <p className="text-sm text-brand-muted leading-relaxed">
+                    Explicamos com absoluta clareza os alcances e os limites biológicos da odontologia
+                    em cada plano de cuidado.
+                  </p>
+                </div>
               </div>
-              <div className="group p-4 rounded-2xl bg-white border border-brand-border/70 transition-all duration-200 hover:border-brand/30 hover:shadow-sm">
-                <h4 className="font-bold text-brand-deep text-base mb-1 transition-colors duration-150 group-hover:text-brand">
-                  Acompanhamento próximo
-                </h4>
-                <p className="text-xs text-brand-muted leading-relaxed">
-                  Você sabe quem é o dentista responsável pelo seu atendimento em todas as sessões.
-                </p>
+
+              <div className="flex items-start gap-4 pt-6 border-t border-brand-deep/[0.06]">
+                <span className="font-mono text-xs font-bold text-brand uppercase tracking-wider mt-1">
+                  02.
+                </span>
+                <div>
+                  <h4 className="font-bold text-brand-deep text-lg mb-1 tracking-tight">
+                    Acompanhamento contínuo e pessoal
+                  </h4>
+                  <p className="text-sm text-brand-muted leading-relaxed">
+                    Você sabe exatamente quem é o profissional responsável pelo seu caso do início à
+                    manutenção periódica.
+                  </p>
+                </div>
               </div>
             </StaggerContainer>
           </AnimatedSection>
 
         </div>
+
       </div>
     </section>
   );

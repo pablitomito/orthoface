@@ -15,18 +15,58 @@ import { WhatsAppFloating } from './components/WhatsAppFloating';
 
 export const App: React.FC = () => {
   return (
-    <div className="min-h-screen bg-white text-brand-deep font-sans antialiased flex flex-col">
+    <div className="min-h-screen bg-brand-canvas text-brand-deep font-sans antialiased flex flex-col selection:bg-brand selection:text-white">
       <SplashScreen />
       <Header />
       <main className="flex-1">
         <Hero />
+
+        <div className="section-divider" aria-hidden="true">
+          <div className="section-divider-line" />
+        </div>
+
         <Tratamentos />
+
+        <div className="section-divider" aria-hidden="true">
+          <div className="section-divider-line" />
+        </div>
+
         <CasoDestaque />
+
+        <div className="section-divider" aria-hidden="true">
+          <div className="section-divider-line" />
+        </div>
+
         <Resultados />
+
+        <div className="section-divider" aria-hidden="true">
+          <div className="section-divider-line" />
+        </div>
+
         <AOrthoface />
+
+        <div className="section-divider" aria-hidden="true">
+          <div className="section-divider-line" />
+        </div>
+
         <Profissional />
+
+        <div className="section-divider" aria-hidden="true">
+          <div className="section-divider-line" />
+        </div>
+
         <Localizacao />
+
+        <div className="section-divider" aria-hidden="true">
+          <div className="section-divider-line" />
+        </div>
+
         <FAQ />
+
+        <div className="section-divider" aria-hidden="true">
+          <div className="section-divider-line" />
+        </div>
+
         <CTAEncerramento />
       </main>
       <Footer />

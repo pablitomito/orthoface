@@ -8,102 +8,110 @@ const WA_AGENDAR =
 
 export const Localizacao: React.FC = () => {
   return (
-    <section id="localizacao" className="py-20 lg:py-28 bg-brand-ice border-b border-brand-border/60">
+    <section id="localizacao" className="py-24 lg:py-32 xl:py-36 bg-brand-canvas">
       <div className="max-w-7xl mx-auto px-5 sm:px-8">
 
-        {/* ── Heading ─────────────────────────────────────────── */}
-        <AnimatedSection variant="fadeUp" className="max-w-2xl mb-12">
-          <span className="text-xs font-bold uppercase tracking-wider text-brand block mb-3">
-            Fácil Acesso em Teresina
-          </span>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-brand-deep tracking-tight mb-4">
+        {/* ── Header Editorial ───────────────────────────────── */}
+        <AnimatedSection variant="fadeUp" className="max-w-3xl mb-16 lg:mb-20">
+          <div className="flex items-center gap-3 mb-4">
+            <span className="h-[1.5px] w-6 bg-brand" />
+            <span className="text-xs font-bold uppercase tracking-[0.2em] text-brand">
+              Capítulo 05 · Acesso &amp; Atendimento
+            </span>
+          </div>
+
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-brand-deep tracking-[-0.03em] leading-[1.08] mb-5">
             Chegar à Orthoface é simples.
           </h2>
-          <p className="text-base sm:text-lg text-brand-muted">
+
+          <p className="text-base sm:text-lg text-brand-muted leading-relaxed">
             Estrutura acessível com localização privilegiada na Zona Norte de Teresina.
           </p>
         </AnimatedSection>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+        {/* ── Grid Arquitetônico Unificado ───────────────────── */}
+        <div className="border border-brand-deep/[0.08] rounded-2xl overflow-hidden bg-white grid grid-cols-1 lg:grid-cols-12 divide-y lg:divide-y-0 lg:divide-x divide-brand-deep/[0.08]">
 
-          {/* ── Info card — fadeRight ────────────────────────── */}
-          <AnimatedSection
-            variant="fadeRight"
-            delay={80}
-            className="lg:col-span-5 bg-white p-8 sm:p-10 rounded-3xl border border-brand-border/80 flex flex-col justify-between shadow-sm"
-          >
-            <div className="space-y-6">
+          {/* ── Dados de Atendimento ─────────────────────────── */}
+          <div className="lg:col-span-5 p-8 sm:p-12 flex flex-col justify-between space-y-10">
+            <div className="space-y-8">
               <div>
-                <h4 className="text-xs font-bold uppercase text-brand tracking-wider mb-2">
-                  Endereço
-                </h4>
-                <p className="text-base font-semibold text-brand-deep leading-snug">
+                <span className="font-mono text-xs font-bold uppercase tracking-wider text-brand block mb-2">
+                  01. Endereço
+                </span>
+                <p className="text-lg font-bold text-brand-deep leading-snug">
                   Av. Poti Velho, QD Lt 03 — Residencial Lindalma Soares
                 </p>
-                <p className="text-sm text-brand-muted mt-1">Teresina — PI, CEP 64003-640</p>
+                <p className="text-sm text-brand-muted mt-1">
+                  Teresina — PI · CEP 64003-640
+                </p>
               </div>
 
-              <div className="border-t border-brand-border/60 pt-6">
-                <h4 className="text-xs font-bold uppercase text-brand tracking-wider mb-2">
-                  Horários de Atendimento
-                </h4>
-                <p className="text-sm text-brand-deep font-medium">
+              <div className="pt-6 border-t border-brand-deep/[0.06]">
+                <span className="font-mono text-xs font-bold uppercase tracking-wider text-brand block mb-2">
+                  02. Horários de Funcionamento
+                </span>
+                <p className="text-sm sm:text-base text-brand-deep font-medium">
                   Segunda a sexta: <span className="font-bold">08h às 19h</span>
                 </p>
-                <p className="text-sm text-brand-deep font-medium mt-1">
+                <p className="text-sm sm:text-base text-brand-deep font-medium mt-1">
                   Sábado: <span className="font-bold">08h às 12h</span>
                 </p>
               </div>
 
-              <div className="border-t border-brand-border/60 pt-6">
-                <h4 className="text-xs font-bold uppercase text-brand tracking-wider mb-2">
-                  WhatsApp Direto
-                </h4>
-                <p className="text-xl font-bold text-brand tracking-tight transition-all duration-150 hover:text-brand-hover hover:underline cursor-pointer">
+              <div className="pt-6 border-t border-brand-deep/[0.06]">
+                <span className="font-mono text-xs font-bold uppercase tracking-wider text-brand block mb-2">
+                  03. Agendamento &amp; Contato
+                </span>
+                <a
+                  href={WA_AGENDAR}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-2xl font-extrabold text-brand tracking-tight hover:text-brand-hover transition-colors inline-block"
+                >
                   (86) 99939-8960
-                </p>
-                <p className="text-xs text-brand-muted mt-1">
-                  Atendimento ágil para tirar dúvidas e confirmar agendamentos.
+                </a>
+                <p className="text-xs text-brand-muted mt-1.5 leading-relaxed">
+                  Confirmação de consultas, dúvidas sobre procedimentos e orientações prévias.
                 </p>
               </div>
             </div>
 
-            <div className="flex flex-col sm:flex-row gap-3 pt-8 mt-6 border-t border-brand-border/60">
+            {/* Ações de navegação em linha */}
+            <div className="flex flex-col sm:flex-row gap-3 pt-6 border-t border-brand-deep/[0.08]">
               <a
                 href={MAPS_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex-1 text-center px-5 py-3.5 rounded-full bg-brand-deep text-white text-sm font-semibold hover:bg-brand-navy transition-colors active:scale-[0.98]"
+                className="flex-1 text-center px-6 py-3.5 rounded-full border border-brand-deep/20 text-brand-deep text-xs font-bold uppercase tracking-wider hover:border-brand-deep/60 hover:bg-brand-deep/5 transition-all active:scale-[0.98]"
               >
-                Traçar rota
+                Traçar Rota no Mapa
               </a>
+
               <a
                 href={WA_AGENDAR}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex-1 text-center px-5 py-3.5 rounded-full bg-brand text-white text-sm font-semibold hover:bg-brand-hover transition-all active:scale-[0.98] hover:shadow-md hover:shadow-brand/20"
+                className="flex-1 text-center px-6 py-3.5 rounded-full bg-brand text-white text-xs font-bold uppercase tracking-wider hover:bg-brand-hover shadow-sm shadow-brand/20 transition-all active:scale-[0.98]"
               >
-                Falar pelo WhatsApp
+                WhatsApp Direto
               </a>
             </div>
-          </AnimatedSection>
+          </div>
 
-          {/* ── Map — fadeLeft ───────────────────────────────── */}
-          <AnimatedSection
-            variant="fadeLeft"
-            delay={160}
-            className="lg:col-span-7 bg-white rounded-3xl overflow-hidden border border-brand-border/80 shadow-sm min-h-[380px] relative"
-          >
+          {/* ── Mapa Interativo Perfeitamente Integrado ──────── */}
+          <div className="lg:col-span-7 min-h-[420px] sm:min-h-[480px] bg-brand-deep/5 relative">
             <iframe
               title="Mapa de Localização Orthoface em Teresina"
               src="https://maps.google.com/maps?q=Av.+Poti+Velho,+Teresina+-+PI&t=&z=14&ie=UTF8&iwloc=&output=embed"
-              className="w-full h-full min-h-[380px] border-0"
+              className="w-full h-full min-h-[420px] border-0"
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
             />
-          </AnimatedSection>
+          </div>
 
         </div>
+
       </div>
     </section>
   );

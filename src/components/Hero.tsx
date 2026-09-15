@@ -12,7 +12,7 @@ export const Hero: React.FC = () => {
   const rafId = useRef<number>(0);
 
   useEffect(() => {
-    const timer = setTimeout(() => setMounted(true), 100);
+    const timer = setTimeout(() => setMounted(true), 80);
     return () => clearTimeout(timer);
   }, []);
 
@@ -34,7 +34,7 @@ export const Hero: React.FC = () => {
           img.style.transform = '';
           return;
         }
-        img.style.transform = `translateY(${scrollY * 0.16}px)`;
+        img.style.transform = `translateY(${scrollY * 0.12}px)`;
       });
     };
 
@@ -48,14 +48,14 @@ export const Hero: React.FC = () => {
     };
   }, [prefersReduced]);
 
-  const animStyle = (delayMs: number, translateY = 18): React.CSSProperties =>
+  const animStyle = (delayMs: number, translateY = 16): React.CSSProperties =>
     prefersReduced
       ? {}
       : {
         opacity: mounted ? 1 : 0,
         transform: mounted ? 'none' : `translateY(${translateY}px)`,
         transition:
-          'opacity 650ms cubic-bezier(0.4, 0, 0.2, 1), transform 650ms cubic-bezier(0.4, 0, 0.2, 1)',
+          'opacity 700ms cubic-bezier(0.16, 1, 0.3, 1), transform 700ms cubic-bezier(0.16, 1, 0.3, 1)',
         transitionDelay: `${delayMs}ms`,
       };
 
@@ -71,33 +71,33 @@ export const Hero: React.FC = () => {
     <section
       ref={sectionRef}
       id="inicio"
-      className="relative overflow-hidden bg-brand-ice"
+      className="relative overflow-hidden bg-brand-canvas"
     >
       {/* =========================================================
           DESKTOP
-          Imagem horizontal ocupando toda a primeira dobra,
-          com alinhamento ao topo para preservar o banner original
+          Preenche a primeira dobra (100% viewport menos header),
+          imagem perfeitamente visível e texto na margem esquerda
          ========================================================= */}
-      <div className="relative hidden aspect-video w-full lg:block">
+      <div className="relative hidden min-h-[calc(100vh-5rem)] lg:block lg:min-h-[720px] xl:min-h-[780px]">
 
-        {/* Imagem principal desktop com object-top para preservar o topo original */}
+        {/* Imagem do banner desktop com object-top preservando a cabeça do Dr. Fernando e o topo */}
         <img
           ref={desktopImgRef}
           src="/images/dr-fernando-hero-desktop.jpg"
           alt="Dr. Fernando Galdino, responsável clínico da Orthoface"
-          className="absolute inset-0 h-full w-full object-contain"
-          style={{ opacity: 1 }}
+          className="absolute inset-0 h-full w-full object-cover object-top"
+          style={imageFadeStyle}
         />
 
-        {/* Gradiente suave da esquerda para leitura ideal sem ofuscar a imagem à direita */}
+        {/* Gradiente editorial translúcido na lateral esquerda para leitura sem ocultar o Dr. Fernando */}
         <div
           className="
             pointer-events-none
             absolute inset-0
             bg-gradient-to-r
-            from-white/85
-            via-white/45
-            via-[40%]
+            from-[#f8fafc]/65
+            via-[#f8fafc]/40
+            via-[32%]
             to-transparent
           "
         />
@@ -106,28 +106,28 @@ export const Hero: React.FC = () => {
         <div
           className="
             pointer-events-none
-            absolute inset-x-0 bottom-0 h-32
+            absolute inset-x-0 bottom-0 h-36
             bg-gradient-to-t
-            from-brand-deep/10
+            from-[#f8fafc]
+            via-[#f8fafc]/10
             to-transparent
           "
         />
 
-        {/* Conteúdo posicionado elegantemente à esquerda com margem lateral refinada */}
-        <div className="relative z-10 mx-auto flex min-h-[calc(100vh-5rem)] w-full max-w-[1520px] items-center px-8 sm:px-12 lg:min-h-[700px] lg:px-14 xl:min-h-[760px] xl:px-20 2xl:px-24">
+        {/* Conteúdo com posicionamento estritamente na lateral esquerda */}
+        <div className="relative z-10 mx-auto flex min-h-[calc(100vh-5rem)] w-full max-w-[1520px] items-center px-8 sm:px-12 lg:min-h-[720px] lg:px-16 xl:min-h-[780px] xl:px-20 2xl:px-24">
 
-          <div className="w-full max-w-[620px] pb-8 pt-4">
+          <div className="w-full max-w-[620px] pb-10 pt-6">
 
-            {/* Eyebrow */}
-            <div style={animStyle(60, 10)} className="mb-5 flex items-center gap-2">
-              <span className="h-2 w-2 rounded-full bg-brand" />
-
-              <p className="text-xs font-bold uppercase tracking-[0.14em] text-brand">
-                Orthoface · Odontologia especializada
+            {/* Eyebrow Editorial */}
+            <div style={animStyle(60, 10)} className="mb-6 flex items-center gap-3">
+              <span className="h-[1.5px] w-6 bg-brand" />
+              <p className="text-xs font-bold uppercase tracking-[0.2em] text-brand">
+                Orthoface · Odontologia Especializada
               </p>
             </div>
 
-            {/* Headline com maior presença visual */}
+            {/* Headline com grande presença editorial */}
             <h1
               style={animStyle(140, 18)}
               className="
@@ -136,22 +136,22 @@ export const Hero: React.FC = () => {
                 leading-[1.04]
                 tracking-[-0.035em]
                 text-brand-deep
-                lg:text-[3.4rem]
-                xl:text-[3.9rem]
+                lg:text-[3.5rem]
+                xl:text-[4.1rem]
               "
             >
               Todas as etapas do seu tratamento,
-              <span className="block text-brand">
+              <span className="block text-brand font-extrabold">
                 em um só lugar.
               </span>
             </h1>
 
-            {/* Descrição */}
+            {/* Descrição em largura controlada */}
             <p
               style={animStyle(240, 14)}
               className="
                 mt-6
-                max-w-[520px]
+                max-w-[500px]
                 text-lg
                 leading-relaxed
                 text-brand-muted
@@ -162,8 +162,8 @@ export const Hero: React.FC = () => {
               especialidades para planejar o cuidado certo para cada caso.
             </p>
 
-            {/* CTAs */}
-            <div style={animStyle(340, 14)} className="mt-8 flex flex-wrap items-center gap-3.5">
+            {/* CTAs de alto padrão editorial */}
+            <div style={animStyle(340, 14)} className="mt-9 flex flex-wrap items-center gap-4">
 
               <a
                 href={WA_AGENDAR}
@@ -173,27 +173,27 @@ export const Hero: React.FC = () => {
                   inline-flex
                   items-center
                   justify-center
-                  gap-2
+                  gap-2.5
                   rounded-full
                   bg-brand
-                  px-7
+                  px-8
                   py-4
-                  text-base
+                  text-sm
                   font-semibold
                   text-white
-                  shadow-lg
-                  shadow-brand/25
+                  shadow-sm
+                  shadow-brand/20
                   transition-all
-                  duration-200
+                  duration-300
                   hover:-translate-y-0.5
                   hover:bg-brand-hover
-                  hover:shadow-xl
+                  hover:shadow-md
                   hover:shadow-brand/30
                   active:translate-y-0
                 "
               >
-                Agendar avaliação
-                <span aria-hidden="true">↗</span>
+                Agendar Avaliação
+                <span aria-hidden="true" className="text-sm">↗</span>
               </a>
 
               <a
@@ -204,55 +204,42 @@ export const Hero: React.FC = () => {
                   justify-center
                   rounded-full
                   border
-                  border-brand-deep/15
-                  bg-white/80
-                  px-6
+                  border-brand-deep/20
+                  bg-white/60
+                  px-7
                   py-4
-                  text-base
+                  text-sm
                   font-semibold
                   text-brand-deep
                   backdrop-blur-sm
                   transition-all
-                  duration-200
-                  hover:border-brand/30
+                  duration-300
+                  hover:border-brand-deep/50
                   hover:bg-white
                 "
               >
-                Conhecer tratamentos
+                Conhecer Tratamentos
               </a>
             </div>
 
-            {/* Informação de atendimento */}
+            {/* Informação de atendimento arquitetônica */}
             <div
               style={animStyle(450, 12)}
               className="
-                mt-8
+                mt-10
                 flex
                 items-center
-                gap-3
+                gap-3.5
                 border-t
-                border-brand-deep/10
-                pt-5
-                text-sm
+                border-brand-deep/[0.08]
+                pt-6
+                text-xs
+                font-medium
+                tracking-wide
                 text-brand-muted
               "
             >
-              <span className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-brand/10">
-                <svg
-                  className="h-4 w-4 text-brand"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-                  />
-                </svg>
-              </span>
-
+              <span className="flex h-2 w-2 rounded-full bg-emerald-500 ring-4 ring-emerald-500/20" />
               <span>
                 Segunda a sexta, 08h às 19h · Sábado, 08h às 12h
               </span>
@@ -265,12 +252,12 @@ export const Hero: React.FC = () => {
 
       {/* =========================================================
           MOBILE
-          Composição vertical com botões e horários na base,
-          deixando o rosto do Dr. Fernando completamente livre
+          Composição vertical: topo para título/texto, centro livre
+          para o Dr. Fernando e base para os botões e horário
          ========================================================= */}
       <div className="relative overflow-hidden lg:hidden">
 
-        {/* Imagem vertical */}
+        {/* Imagem vertical mobile */}
         <img
           src="/images/dr-fernando-hero-mobile.jpg"
           alt="Dr. Fernando Galdino, responsável clínico da Orthoface"
@@ -285,80 +272,77 @@ export const Hero: React.FC = () => {
           style={imageFadeStyle}
         />
 
-        {/* Gradiente superior para leitura do texto */}
+        {/* Gradiente superior suave para leitura */}
         <div
           className="
             pointer-events-none
             absolute
             inset-x-0
             top-0
-            h-[40%]
+            h-[42%]
             bg-gradient-to-b
-            from-white/95
-            via-white/70
+            from-[#f8fafc]/95
+            via-[#f8fafc]/75
             via-[35%]
             to-transparent
           "
         />
 
-        {/* Gradiente inferior para leitura dos botões e horário na base */}
+        {/* Gradiente inferior para leitura dos botões na base */}
         <div
           className="
             pointer-events-none
             absolute
             inset-x-0
             bottom-0
-            h-64
+            h-72
             bg-gradient-to-t
-            from-white/95
-            via-white/80
-            via-[45%]
+            from-[#f8fafc]/98
+            via-[#f8fafc]/80
+            via-[48%]
             to-transparent
           "
         />
 
-        {/* Conteúdo mobile distribuído entre topo e base com centro livre */}
+        {/* Conteúdo mobile com flex-col justify-between para manter o rosto livre */}
         <div
           className="
             relative
             z-10
             flex
-            min-h-[760px]
+            min-h-[780px]
             flex-col
             justify-between
             px-5
             pb-8
-            pt-8
-            xs:min-h-[780px]
-            sm:min-h-[840px]
+            pt-9
+            xs:min-h-[820px]
+            sm:min-h-[860px]
             sm:px-8
             sm:pb-10
-            sm:pt-10
+            sm:pt-12
           "
         >
 
           {/* PARTE SUPERIOR: Eyebrow + Headline + Descrição */}
           <div className="max-w-[360px] sm:max-w-[420px]">
 
-            {/* Eyebrow */}
-            <div style={animStyle(60, 10)} className="mb-3 flex items-center gap-2">
-              <span className="h-2 w-2 rounded-full bg-brand" />
-
-              <p className="text-[10px] font-bold uppercase tracking-[0.12em] text-brand sm:text-xs">
-                Orthoface · Odontologia especializada
+            <div style={animStyle(60, 10)} className="mb-3.5 flex items-center gap-2.5">
+              <span className="h-[1.5px] w-4 bg-brand" />
+              <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-brand sm:text-xs">
+                Orthoface · Odontologia Especializada
               </p>
             </div>
 
-            {/* Headline */}
             <h1
               style={animStyle(140, 16)}
               className="
-                text-[2.15rem]
+                text-[2.2rem]
                 font-extrabold
                 leading-[1.05]
                 tracking-[-0.035em]
                 text-brand-deep
-                xs:text-[2.35rem]
+                xs:text-[2.45rem]
                 sm:text-5xl
               "
             >
@@ -368,11 +352,10 @@ export const Hero: React.FC = () => {
               </span>
             </h1>
 
-            {/* Descrição */}
             <p
               style={animStyle(230, 12)}
               className="
-                mt-3.5
+                mt-4
                 max-w-[340px]
                 text-[14px]
                 leading-relaxed
@@ -387,11 +370,10 @@ export const Hero: React.FC = () => {
 
           </div>
 
-          {/* PARTE INFERIOR: Botões + Horário (mantém o rosto totalmente desobstruído) */}
+          {/* PARTE INFERIOR: Botões + Horário (sem sobrepor o rosto) */}
           <div className="w-full max-w-[380px] pt-4">
 
-            {/* CTAs */}
-            <div style={animStyle(330, 12)} className="flex flex-col gap-2.5">
+            <div style={animStyle(330, 12)} className="flex flex-col gap-3">
 
               <a
                 href={WA_AGENDAR}
@@ -406,19 +388,19 @@ export const Hero: React.FC = () => {
                   rounded-full
                   bg-brand
                   px-6
-                  py-3.5
+                  py-4
                   text-sm
                   font-semibold
                   text-white
-                  shadow-lg
-                  shadow-brand/25
+                  shadow-sm
+                  shadow-brand/20
                   transition-all
                   hover:bg-brand-hover
                   active:scale-[0.98]
                 "
               >
                 Agendar avaliação pelo WhatsApp
-
+                <span aria-hidden="true">↗</span>
               </a>
 
               <a
@@ -430,8 +412,8 @@ export const Hero: React.FC = () => {
                   justify-center
                   rounded-full
                   border
-                  border-brand-deep/15
-                  bg-white/85
+                  border-brand-deep/20
+                  bg-white/80
                   px-6
                   py-3.5
                   text-sm
@@ -451,7 +433,7 @@ export const Hero: React.FC = () => {
             {/* Horário na parte inferior abaixo dos botões */}
             <div
               style={animStyle(440, 8)}
-              className="mt-3.5 flex items-center gap-2 text-[11px] text-brand-muted sm:text-xs"
+              className="mt-4 flex items-center justify-center gap-2 text-[11px] text-brand-muted sm:text-xs"
             >
               <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
               <span>Segunda a sexta, 08h às 19h · Sábado, 08h às 12h</span>

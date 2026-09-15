@@ -75,38 +75,47 @@ export const Tratamentos: React.FC = () => {
   };
 
   return (
-    <section id="tratamentos" className="py-20 lg:py-28 bg-white border-b border-brand-border/60">
+    <section id="tratamentos" className="py-24 lg:py-32 xl:py-36 bg-brand-canvas">
       <div className="max-w-7xl mx-auto px-5 sm:px-8">
 
-        {/* ── Section header ─────────────────────────────────── */}
-        <AnimatedSection variant="fadeUp" className="max-w-2xl mb-14 lg:mb-20">
-          <span className="text-xs font-bold uppercase tracking-wider text-brand block mb-3">
-            Especialidades Integradas
-          </span>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-brand-deep tracking-tight mb-4">
+        {/* ── Section Header Editorial ───────────────────────── */}
+        <AnimatedSection variant="fadeUp" className="max-w-3xl mb-16 lg:mb-24">
+          <div className="flex items-center gap-3 mb-4">
+            <span className="h-[1.5px] w-6 bg-brand" />
+            <span className="text-xs font-bold uppercase tracking-[0.2em] text-brand">
+              Capítulo 01 · Especialidades Integradas
+            </span>
+          </div>
+
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-brand-deep tracking-[-0.03em] leading-[1.08] mb-6">
             Cuidado completo, de acordo com o que você precisa.
           </h2>
-          <p className="text-base sm:text-lg text-brand-muted leading-relaxed">
-            A avaliação é o primeiro passo para entender seu caso e indicar o tratamento adequado.
+
+          <p className="text-base sm:text-lg text-brand-muted leading-relaxed max-w-2xl">
+            A avaliação é o primeiro passo para entender a anatomia funcional de cada sorriso e indicar
+            o plano de tratamento mais seguro e previsível.
           </p>
         </AnimatedSection>
 
-        {/* ── Grid ───────────────────────────────────────────── */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+        {/* ── Composição Editorial: Lista Numerada + Coluna de Abordagem ── */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
 
-          {/* ── Accordion ────────────────────────────────────── */}
+          {/* ── Lista Editorial Numerada (Linhas Arquitetônicas) ── */}
           <StaggerContainer
             variant="fadeUp"
-            staggerMs={55}
-            className="lg:col-span-7 divide-y divide-brand-border/70 border-t border-b border-brand-border/70"
+            staggerMs={60}
+            className="lg:col-span-7 divide-y divide-brand-deep/[0.08] border-t border-b border-brand-deep/[0.08]"
           >
             {specialties.map((item) => {
               const isOpen = openId === item.id;
               return (
-                <div key={item.id} className="group transition-colors duration-150 hover:bg-brand-ice/20">
-                  {/* ── Row header ──────────────────────────── */}
+                <div
+                  key={item.id}
+                  className="group transition-colors duration-200 hover:bg-brand-deep/[0.015]"
+                >
+                  {/* ── Linha Clicável ── */}
                   <div
-                    className="py-5 flex items-center justify-between cursor-pointer select-none"
+                    className="py-6 sm:py-7 flex items-start sm:items-center justify-between cursor-pointer select-none gap-4"
                     onClick={() => toggleAccordion(item.id)}
                     role="button"
                     aria-expanded={isOpen}
@@ -119,32 +128,39 @@ export const Tratamentos: React.FC = () => {
                       }
                     }}
                   >
-                    <span className="text-xs font-mono text-brand font-bold mr-4 group-hover:text-brand transition-colors">
-                      {item.num}
-                    </span>
-                    <div className="flex-1">
-                      <h3 className="text-xl font-bold text-brand-deep group-hover:text-brand transition-colors duration-200">
-                        {item.title}
-                      </h3>
-                      <p className="text-sm text-brand-muted mt-1">{item.summary}</p>
+                    <div className="flex items-baseline sm:items-center gap-4 sm:gap-6 flex-1">
+                      <span className="text-xs font-mono font-bold text-brand tracking-wider">
+                        {item.num}
+                      </span>
+                      <div>
+                        <h3 className="text-xl sm:text-2xl font-bold text-brand-deep group-hover:text-brand transition-colors duration-200 tracking-tight">
+                          {item.title}
+                        </h3>
+                        <p className="text-sm text-brand-muted mt-1 leading-relaxed max-w-xl">
+                          {item.summary}
+                        </p>
+                      </div>
                     </div>
-                    {/* ── Icon: + rotates 45° → × when open ── */}
-                    <span
-                      className="ml-4 text-brand-muted group-hover:text-brand text-xl font-light select-none transition-transform duration-300 inline-block"
-                      style={{ transform: isOpen ? 'rotate(45deg)' : 'rotate(0deg)' }}
-                      aria-hidden="true"
-                    >
-                      +
-                    </span>
+
+                    {/* Ícone editorial minimalista: + / × */}
+                    <div className="flex-shrink-0 ml-2 mt-1 sm:mt-0">
+                      <span
+                        className="w-8 h-8 rounded-full border border-brand-deep/[0.12] flex items-center justify-center text-brand-deep group-hover:border-brand group-hover:text-brand text-lg font-light transition-all duration-300"
+                        style={{ transform: isOpen ? 'rotate(45deg)' : 'rotate(0deg)' }}
+                        aria-hidden="true"
+                      >
+                        +
+                      </span>
+                    </div>
                   </div>
 
-                  {/* ── Accordion body (CSS Grid height trick) ── */}
+                  {/* ── Accordion Body com Detalhes Clínicos ── */}
                   <div
                     id={`acc-body-${item.id}`}
                     className={`accordion-body${isOpen ? ' open' : ''}`}
                   >
                     <div className="accordion-body-inner">
-                      <div className="pb-5 text-sm text-brand-muted pl-8 leading-relaxed">
+                      <div className="pb-7 pl-8 sm:pl-12 pr-4 text-sm sm:text-base text-brand-muted/90 leading-relaxed border-l-2 border-brand/40 ml-4 sm:ml-7 my-2">
                         {item.details}
                       </div>
                     </div>
@@ -154,48 +170,8 @@ export const Tratamentos: React.FC = () => {
             })}
           </StaggerContainer>
 
-          {/* ── Sticky card (right column) ───────────────────── */}
-          <AnimatedSection
-            variant="fadeLeft"
-            delay={200}
-            className="lg:col-span-5 bg-brand-ice p-6 sm:p-8 rounded-3xl border border-brand-border/70 sticky top-28"
-          >
-            <div className="overflow-hidden rounded-2xl mb-6 shadow-sm">
-              <img
-                src="/images/tratamentos-resina.jpg"
-                alt="Caso de facetas em resina e reabilitação na Orthoface"
-                className="w-full h-64 object-cover"
-                loading="lazy"
-              />
-            </div>
-            <span className="text-xs font-bold uppercase tracking-wider text-brand block mb-1">
-              Abordagem Clínica
-            </span>
-            <h4 className="text-xl font-bold text-brand-deep mb-2">
-              Diagnóstico claro e sem pressa
-            </h4>
-            <p className="text-sm text-brand-muted leading-relaxed mb-6">
-              Em nossa clínica, nenhum procedimento é realizado sem uma análise minuciosa da sua
-              saúde gengival, mastigatória e oclusal. Você entende exatamente o passo a passo de
-              cada intervenção.
-            </p>
-            <a
-              href="https://wa.me/5586999398960?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Orthoface%20e%20gostaria%20de%20tirar%20d%C3%BAvidas%20sobre%20os%20tratamentos."
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-sm font-semibold text-brand hover:text-brand-hover transition-colors"
-            >
-              <span>Tirar dúvidas sobre um procedimento</span>
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M17 8l4 4m0 0l-4 4m4-4H3"
-                />
-              </svg>
-            </a>
-          </AnimatedSection>
+
+
         </div>
       </div>
     </section>

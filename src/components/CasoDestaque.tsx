@@ -3,90 +3,82 @@ import { AnimatedSection } from './AnimatedSection';
 
 export const CasoDestaque: React.FC = () => {
   return (
-    <section className="py-20 bg-brand-ice border-b border-brand-border/60">
+    <section className="py-24 lg:py-32 xl:py-36 bg-brand-canvas">
       <div className="max-w-7xl mx-auto px-5 sm:px-8">
 
-        {/* ── Outer wrapper animates as a unit ───────────────── */}
-        <AnimatedSection
-          variant="scaleIn"
-          threshold={0.08}
-          className="bg-white rounded-3xl p-8 sm:p-12 lg:p-16 border border-brand-border/80 shadow-sm"
-        >
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        {/* ── Composição Editorial de Estudo de Caso ────────── */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
 
-            {/* ── Clinical photo ────────────────────────────── */}
-            <AnimatedSection
-              variant="fadeRight"
-              delay={80}
-              className="lg:col-span-6 order-2 lg:order-1"
-            >
-              <div className="rounded-2xl overflow-hidden shadow-md border border-brand-border">
-                <img
-                  src="/images/caso-bruxismo.jpg"
-                  alt="Documentação clínica de caso de bruxismo e reabilitação estética na Orthoface"
-                  className="w-full h-auto object-cover"
-                  loading="lazy"
-                />
-              </div>
-              <div className="flex justify-between items-center text-xs text-brand-muted mt-3 px-1">
-                <span>Fotografia clínica documentada durante o protocolo</span>
-                <span className="font-medium text-brand">Caso Clínico Real · Orthoface</span>
+          {/* ── Imagem Clínica em Alta Resolução ──────────────── */}
+          <AnimatedSection
+            variant="fadeRight"
+            delay={80}
+            className="lg:col-span-7 order-2 lg:order-1"
+          >
+            <div className="relative rounded-2xl overflow-hidden border border-brand-deep/[0.08] bg-white">
+              <img
+                src="/images/caso-bruxismo.jpg"
+                alt="Documentação clínica de caso de bruxismo e reabilitação estética na Orthoface"
+                className="w-full h-auto object-cover"
+                loading="lazy"
+              />
+            </div>
+            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center text-xs text-brand-muted mt-4 gap-1">
+              <span className="font-mono text-[11px] uppercase tracking-wider text-brand">
+                FIG. 01 — Protocolo de Reabilitação Oclusal
+              </span>
+              <span className="text-brand-muted/80">
+                Documentação fotográfica clínica · Orthoface
+              </span>
+            </div>
+          </AnimatedSection>
+
+          {/* ── Narrativa Clínica Editorial ──────────────────── */}
+          <div className="lg:col-span-5 order-1 lg:order-2">
+            <AnimatedSection variant="fadeDown" delay={40}>
+              <div className="flex items-center gap-3 mb-5">
+                <span className="h-[1.5px] w-6 bg-brand" />
+                <span className="text-xs font-bold uppercase tracking-[0.2em] text-brand">
+                  Estudo de Caso Clínico #01
+                </span>
               </div>
             </AnimatedSection>
 
-            {/* ── Clinical narrative ────────────────────────── */}
-            <div className="lg:col-span-6 order-1 lg:order-2">
-              <AnimatedSection variant="fadeDown" delay={40}>
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-ice text-brand text-xs font-bold uppercase tracking-wider mb-4 border border-brand-border transition-all duration-200 hover:-translate-y-px hover:shadow-sm">
-                  Estudo de Caso Clínico
-                </div>
-              </AnimatedSection>
+            <AnimatedSection variant="fadeUp" delay={120}>
+              <h2 className="text-3xl sm:text-4xl lg:text-[2.75rem] font-extrabold text-brand-deep leading-[1.1] tracking-[-0.03em] mb-6">
+                Quando o tratamento precisa recuperar mais do que a aparência.
+              </h2>
+            </AnimatedSection>
 
-              <AnimatedSection variant="fadeUp" delay={120}>
-                <h3 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-brand-deep leading-tight tracking-tight mb-6">
-                  Quando o tratamento precisa recuperar mais do que a aparência.
-                </h3>
-              </AnimatedSection>
+            <AnimatedSection variant="fadeUp" delay={200}>
+              <div className="space-y-4 text-base sm:text-lg text-brand-muted leading-relaxed mb-8">
+                <p>
+                  Neste caso, o paciente apresentava abrasão severa no esmalte, bruxismo
+                  associado à má oclusão e dentes tratados endodonticamente que estavam
+                  quebrados.
+                </p>
+                <p>
+                  O planejamento integrou reconstruções com pinos de fibra de vidro, restaurações
+                  estéticas e restabelecimento da dimensão vertical de oclusão ao longo do processo.
+                </p>
+              </div>
+            </AnimatedSection>
 
-              <AnimatedSection variant="fadeUp" delay={220}>
-                <div className="space-y-4 text-base sm:text-lg text-brand-muted leading-relaxed mb-8">
-                  <p>
-                    Neste caso, o paciente apresentava abrasão severa no esmalte, bruxismo
-                    associado à má oclusão e dentes tratados endodonticamente que estavam
-                    quebrados.
-                  </p>
-                  <p>
-                    O tratamento incluiu reconstruções com pinos de fibra de vidro, restaurações
-                    estéticas e levantamento da mordida durante o processo de reabilitação.
-                  </p>
-                </div>
-              </AnimatedSection>
-
-              <AnimatedSection variant="fadeUp" delay={340}>
-                <div className="p-4 rounded-xl bg-brand-ice border border-brand-border/80 text-sm text-brand-deep flex items-start gap-3">
-                  <svg
-                    className="w-5 h-5 text-brand flex-shrink-0 mt-0.5 transition-transform duration-300 hover:scale-110"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                    />
-                  </svg>
-                  <span>
-                    Foco em devolver a mastigação confortável e proteger as articulações antes de
-                    concluir a reabilitação estética.
-                  </span>
-                </div>
-              </AnimatedSection>
-            </div>
-
+            {/* Destaque arquitetônico com linha fina */}
+            <AnimatedSection variant="fadeUp" delay={280}>
+              <div className="pt-6 border-t border-brand-deep/[0.08]">
+                <p className="text-xs font-bold uppercase tracking-[0.16em] text-brand-deep mb-2">
+                  Princípio Fundamental
+                </p>
+                <p className="text-sm sm:text-base text-brand-muted leading-relaxed">
+                  Foco em devolver a mastigação confortável e proteger as articulações antes de
+                  concluir as etapas de harmonização estética.
+                </p>
+              </div>
+            </AnimatedSection>
           </div>
-        </AnimatedSection>
+
+        </div>
       </div>
     </section>
   );
